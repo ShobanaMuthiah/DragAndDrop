@@ -2,6 +2,7 @@ import { Button } from 'flowbite-react';
 import React, { useState, useEffect } from 'react';
 import { FaFile, FaMoon, FaSun, FaTicketAlt, FaUpload } from 'react-icons/fa';
 import { FaTicket, FaUpDown, FaUpDownLeftRight } from 'react-icons/fa6';
+import { IoMdCloudUpload } from 'react-icons/io';
 import { RxCross2 } from 'react-icons/rx';
 
 const App = () => {
@@ -55,23 +56,28 @@ const App = () => {
     document.body.className = theme === 'light' ? '' : 'dark';
   }, [theme]);
 
+  const handleFile=()=>{
+    setFile(null)
+  }
+
   return (
     <div className={`min-h-screen ${theme === 'light' ? 'bg-white text-black' : 'bg-gray-900 text-white'} flex flex-col align-top`}>
-     <div className="nav">
-     Theme &nbsp;
+     <div className="grid grid-cols-2">
+     <p>Upload your XL/CSV/pdf</p>
+
+     <p className='justify-self-end pr-6'>Theme &nbsp;
      <Button 
         onClick={toggleTheme} 
         className='inline '
         gradientMonochrome="purple">
          {theme === 'light' ? <FaMoon/> : <FaSun/>} 
-      </Button>&nbsp;&nbsp;&nbsp; &nbsp;
-      <span>Upload your XL/CSV/pdf</span>
+      </Button></p>
      </div>
 
       <div className="grid grid-cols-2 bg-slate-300 dark:bg-slate-600 w-full p-8 mt-2">
         <div >
           <p className="text-gray-600 dark:text-gray-50">
-            <FaUpload className='inline-flex'/> Drag and drop file here
+            <IoMdCloudUpload className='inline-flex'/> Drag and drop file here
           </p>
           <small className="text-gray-400 dark:text-gray-300">Limit 200MB per file</small>
         </div>
@@ -98,12 +104,13 @@ const App = () => {
       )}
 
       {file && !fileError && (
-        <div className="file-info  mt-1 p-8">
+        <div className="file-info grid grid-cols-2 mt-1 p-8">
           <p className='text-gray-600 dark:text-gray-200'>
             <FaFile className='inline'/> {file.name} <small className="text-gray-400 dark:text-gray-300">{Math.round(file.size / 1024)} KB</small>
-          &nbsp;&nbsp;&nbsp;      
-          <RxCross2 className='inline' />
+               
               </p>
+          <RxCross2 className='justify-self-end' onClick={handleFile} />
+
         </div>
       )}
     </div>
