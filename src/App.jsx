@@ -1,7 +1,6 @@
 import { Button } from 'flowbite-react';
 import React, { useState, useEffect } from 'react';
 import { FaFile, FaMoon, FaSun, FaTicketAlt, FaUpload } from 'react-icons/fa';
-import { FaTicket, FaUpDown, FaUpDownLeftRight } from 'react-icons/fa6';
 import { IoMdCloudUpload } from 'react-icons/io';
 import { RxCross2 } from 'react-icons/rx';
 
@@ -68,8 +67,9 @@ const App = () => {
      <p className='justify-self-end pr-6'>Theme &nbsp;
      <Button 
         onClick={toggleTheme} 
+        outline pill
         className='inline '
-        gradientMonochrome="purple">
+        gradientDuoTone='tealToLime'>
          {theme === 'light' ? <FaMoon/> : <FaSun/>} 
       </Button></p>
      </div>
