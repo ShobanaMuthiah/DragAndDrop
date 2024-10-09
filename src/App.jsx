@@ -61,7 +61,7 @@ const App = () => {
   };
 
   return (
-    <div className={`min-h-screen ${theme === 'light' ? 'bg-white text-black' : 'bg-black text-white'} flex flex-col align-top`}>
+    <div className={`min-h-screen ${theme === 'light' ? 'bg-white text-black' : 'bg-black text-white'} flex flex-col align-top pt-10`}>
       <div className="grid grid-cols-2">
         <p>Upload your XL/CSV/pdf</p>
         <p className="justify-self-end pr-6">
@@ -69,9 +69,9 @@ const App = () => {
           <Button
             color="gray"
             onClick={toggleTheme}
-            outline
+            className="bg-slate-600 dark:bg-slate-200 text-white dark:text-black inline"
             pill
-            className="inline"
+           
           >
             {theme === 'light' ? <FaMoon /> : <FaSun />}
           </Button>
