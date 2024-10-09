@@ -66,16 +66,16 @@ const App = () => {
 
      <p className='justify-self-end pr-6'>Theme &nbsp;
      <Button 
+     color='gray'
         onClick={toggleTheme} 
         outline pill
-        className='inline '
-        gradientDuoTone='tealToLime'>
+        className='inline '>
          {theme === 'light' ? <FaMoon/> : <FaSun/>} 
       </Button></p>
      </div>
-<div className="box  grid grid-cols-1 p-8">
+<div className="box  grid grid-cols-1 px-64 ">
   
-      <div className="grid grid-cols-2 w-full rounded-lg  panel  p-8 mt-2"
+      <div className="grid grid-cols-2 rounded-lg  panel  p-8 mt-2"
       onDrop={handleDrop}
           onDragOver={handleDragOver}
       >
