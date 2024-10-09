@@ -1,7 +1,7 @@
 import { Button } from 'flowbite-react';
 import React, { useState, useEffect } from 'react';
 import { FaFile, FaMoon, FaSun, FaTicketAlt, FaUpload } from 'react-icons/fa';
-import { IoMdCloudUpload } from 'react-icons/io';
+import { MdOutlineCloudUpload } from 'react-icons/md';
 import { RxCross2 } from 'react-icons/rx';
 
 const App = () => {
@@ -60,7 +60,7 @@ const App = () => {
   }
 
   return (
-    <div className={`min-h-screen ${theme === 'light' ? 'bg-white text-black' : 'bg-gray-900 text-white'} flex flex-col align-top`}>
+    <div  className={`min-h-screen ${theme === 'light' ? 'bg-white text-black' : 'bg-black text-white'} flex flex-col align-top`}>
      <div className="grid grid-cols-2">
      <p>Upload your XL/CSV/pdf</p>
 
@@ -73,20 +73,25 @@ const App = () => {
          {theme === 'light' ? <FaMoon/> : <FaSun/>} 
       </Button></p>
      </div>
-
-      <div className="grid grid-cols-2 bg-slate-300 dark:bg-slate-600 w-full p-8 mt-2">
+<div className="box  grid grid-cols-1 p-8">
+  
+      <div className="grid grid-cols-2 w-full rounded-lg  panel  p-8 mt-2"
+      onDrop={handleDrop}
+          onDragOver={handleDragOver}
+      >
         <div >
           <p className="text-gray-600 dark:text-gray-50">
-            <IoMdCloudUpload className='inline-flex'/> Drag and drop file here
+            <MdOutlineCloudUpload className='text-2xl inline-flex '/> Drag and drop file here
           </p>
           <small className="text-gray-400 dark:text-gray-300">Limit 200MB per file</small>
         </div>
         <Button
-        color='dark'
-          className="border-4 flex items-center justify-center cursor-pointer mb-4 justify-self-end" 
+        color='gray'
+          className=" flex border border-1 border-gray-500 items-center justify-center m-4 cursor-pointer  justify-self-end" 
           onDrop={handleDrop}
           onDragOver={handleDragOver}
           onClick={() => document.getElementById('fileInput').click()}
+          outline
         >
           Browse Files
           <input
@@ -113,6 +118,7 @@ const App = () => {
 
         </div>
       )}
+</div>
     </div>
   );
 };
