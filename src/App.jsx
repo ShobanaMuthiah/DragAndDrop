@@ -62,7 +62,16 @@ const App = () => {
 
   return (
     <div className={`min-h-screen ${theme === 'light' ? 'bg-white text-black' : 'bg-black text-white'} flex flex-col align-top pt-10`}>
-      <div className="grid grid-cols-2">
+     
+
+      <div className="box grid grid-cols-1 ">
+        
+        <div
+          className="grid grid-cols-1 rounded-lg panel  p-6 mt-2 min-w-[65%] mx-auto"
+          onDrop={handleDrop}
+          onDragOver={handleDragOver}
+        >
+           <div className="grid grid-cols-2">
         <p>Upload your XL/CSV/pdf</p>
         <p className="justify-self-end pr-6">
           Theme &nbsp;
@@ -77,14 +86,8 @@ const App = () => {
           </Button>
         </p>
       </div>
-
-      <div className="box grid grid-cols-1">
-        <div
-          className="grid grid-cols-2 rounded-lg panel p-6 mt-2 min-w-[65%] mx-auto"
-          onDrop={handleDrop}
-          onDragOver={handleDragOver}
-        >
-          <div>
+         <div className="grid grid-cols-2 pt-6">
+         <div>
             <p className="text-gray-600 dark:text-gray-50">
               <MdOutlineCloudUpload className="text-2xl inline-flex" /> Drag and drop file here
             </p>
@@ -106,6 +109,8 @@ const App = () => {
               onChange={handleFileChange}
             />
           </Button>
+
+         </div>
         </div>
 
         {fileError && (
