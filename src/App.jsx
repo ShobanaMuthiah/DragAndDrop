@@ -65,7 +65,21 @@ const App = () => {
      
 
       <div className="box grid grid-cols-1 ">
-        
+      <div className="grid grid-cols-2 min-w-[65%] mx-auto">
+        <p>Upload your XL/CSV/pdf</p>
+        <p className="justify-self-end pr-6">
+          Theme &nbsp;          
+          <Button
+            color="gray"
+            onClick={toggleTheme}
+            className="bg-slate-600 dark:bg-slate-200 text-white dark:text-black inline"
+            pill
+           
+          >
+            {theme === 'light' ? <FaMoon /> : <FaSun />}
+          </Button>
+        </p>
+      </div>
         
         <div
           className="grid grid-cols-1 rounded-lg panel  p-6 mt-2 min-w-[65%] mx-auto"
