@@ -1,6 +1,6 @@
 import { Button } from 'flowbite-react';
 import React, { useState, useEffect } from 'react';
-import { FaFile, FaMoon, FaSun, FaTicketAlt, FaUpload } from 'react-icons/fa';
+import { FaFile, FaMoon, FaSun } from 'react-icons/fa';
 import { MdOutlineCloudUpload } from 'react-icons/md';
 import { RxCross2 } from 'react-icons/rx';
 
@@ -8,7 +8,7 @@ const App = () => {
   const [theme, setTheme] = useState('light');
   const [file, setFile] = useState(null);
   const [fileError, setFileError] = useState('');
-  
+
   const fileSizeLimit = 200 * 1024 * 1024;
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
@@ -48,77 +48,81 @@ const App = () => {
       setFile(null);
     } else {
       setFile(selectedFile);
-      setFileError(''); 
+      setFileError('');
     }
   };
+
   useEffect(() => {
     document.body.className = theme === 'light' ? '' : 'dark';
   }, [theme]);
 
-  const handleFile=()=>{
-    setFile(null)
-  }
+  const handleFile = () => {
+    setFile(null);
+  };
 
   return (
-    <div  className={`min-h-screen ${theme === 'light' ? 'bg-white text-black' : 'bg-black text-white'} flex flex-col align-top`}>
-     <div className="grid grid-cols-2">
-     <p>Upload your XL/CSV/pdf</p>
+    <div className={`min-h-screen ${theme === 'light' ? 'bg-white text-black' : 'bg-black text-white'} flex flex-col align-top`}>
+      <div className="grid grid-cols-2">
+        <p>Upload your XL/CSV/pdf</p>
+        <p className="justify-self-end pr-6">
+          Theme &nbsp;
+          <Button
+            color="gray"
+            onClick={toggleTheme}
+            outline
+            pill
+            className="inline"
+          >
+            {theme === 'light' ? <FaMoon /> : <FaSun />}
+          </Button>
+        </p>
+      </div>
 
-     <p className='justify-self-end pr-6'>Theme &nbsp;
-     <Button 
-     color='gray'
-        onClick={toggleTheme} 
-        outline pill
-        className='inline '>
-         {theme === 'light' ? <FaMoon/> : <FaSun/>} 
-      </Button></p>
-     </div>
-<div className="box  grid grid-cols-1 px-64 ">
-  
-      <div className="grid grid-cols-2 rounded-lg  panel  p-8 mt-2"
-      onDrop={handleDrop}
-          onDragOver={handleDragOver}
-      >
-        <div >
-          <p className="text-gray-600 dark:text-gray-50">
-            <MdOutlineCloudUpload className='text-2xl inline-flex '/> Drag and drop file here
-          </p>
-          <small className="text-gray-400 dark:text-gray-300 ml-6">Limit 200MB per file</small>
-        </div>
-        <Button
-        color='gray'
-          className=" flex items-center justify-center m-4 cursor-pointer  justify-self-end" 
+      <div className="box grid grid-cols-1">
+        <div
+          className="grid grid-cols-2 rounded-lg panel p-6 mt-2 min-w-[65%] mx-auto"
           onDrop={handleDrop}
           onDragOver={handleDragOver}
-          onClick={() => document.getElementById('fileInput').click()}
-          outline
         >
-          Browse Files
-          <input
-            id="fileInput"
-            type="file"
-            className="hidden"
-            onChange={handleFileChange}
-          />
-        </Button>
+          <div>
+            <p className="text-gray-600 dark:text-gray-50">
+              <MdOutlineCloudUpload className="text-2xl inline-flex" /> Drag and drop file here
+            </p>
+            <small className="text-gray-400 dark:text-gray-300 ml-6">Limit 200MB per file</small>
+          </div>
+          <Button
+            color="gray"
+            className="flex items-center justify-center m-4 cursor-pointer justify-self-end"
+            onDrop={handleDrop}
+            onDragOver={handleDragOver}
+            onClick={() => document.getElementById('fileInput').click()}
+            outline
+          >
+            Browse Files
+            <input
+              id="fileInput"
+              type="file"
+              className="hidden"
+              onChange={handleFileChange}
+            />
+          </Button>
+        </div>
+
+        {fileError && (
+          <div className="file-error text-red-500 text-center mt-4">
+            <p>{fileError}</p>
+          </div>
+        )}
+
+        {file && !fileError && (
+          <div className="file-info grid grid-cols-2 mt-1 p-8 min-w-[65%] mx-auto">
+            <p className="text-gray-600 dark:text-gray-200">
+              <FaFile className="inline text-2xl" /> {file.name} <small className="text-gray-400 dark:text-gray-300">{Math.round(file.size / 1024)} KB</small>
+            </p>
+            <RxCross2 className="justify-self-end cursor-pointer" onClick={handleFile} />
+          </div>
+        )}
       </div>
-      {fileError && (
-        <div className="file-error text-red-500 text-center mt-4">
-          <p>{fileError}</p>
-        </div>
-      )}
-
-      {file && !fileError && (
-        <div className="file-info grid grid-cols-2 mt-1 p-8">
-          <p className='text-gray-600 dark:text-gray-200'>
-            <FaFile className='inline text-2xl'/> {file.name} <small className="text-gray-400 dark:text-gray-300">{Math.round(file.size / 1024)} KB</small>
-               
-              </p>
-          <RxCross2 className='justify-self-end cursor-pointer' onClick={handleFile} />
-
-        </div>
-      )}
-</div>
     </div>
   );
 };
