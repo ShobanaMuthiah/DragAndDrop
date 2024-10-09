@@ -83,11 +83,11 @@ const App = () => {
           <p className="text-gray-600 dark:text-gray-50">
             <MdOutlineCloudUpload className='text-2xl inline-flex '/> Drag and drop file here
           </p>
-          <small className="text-gray-400 dark:text-gray-300">Limit 200MB per file</small>
+          <small className="text-gray-400 dark:text-gray-300 ml-6">Limit 200MB per file</small>
         </div>
         <Button
         color='gray'
-          className=" flex border border-1 border-gray-500 items-center justify-center m-4 cursor-pointer  justify-self-end" 
+          className=" flex items-center justify-center m-4 cursor-pointer  justify-self-end" 
           onDrop={handleDrop}
           onDragOver={handleDragOver}
           onClick={() => document.getElementById('fileInput').click()}
@@ -111,10 +111,10 @@ const App = () => {
       {file && !fileError && (
         <div className="file-info grid grid-cols-2 mt-1 p-8">
           <p className='text-gray-600 dark:text-gray-200'>
-            <FaFile className='inline'/> {file.name} <small className="text-gray-400 dark:text-gray-300">{Math.round(file.size / 1024)} KB</small>
+            <FaFile className='inline text-2xl'/> {file.name} <small className="text-gray-400 dark:text-gray-300">{Math.round(file.size / 1024)} KB</small>
                
               </p>
-          <RxCross2 className='justify-self-end' onClick={handleFile} />
+          <RxCross2 className='justify-self-end cursor-pointer' onClick={handleFile} />
 
         </div>
       )}
